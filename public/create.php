@@ -10,9 +10,11 @@ if (isset($_POST['submit'])) {
 		$new_user = array(
 			"firstname" => $_POST['firstname'],
 			"lastname"  => $_POST['lastname'],
+			"username"  => $_POST['username'],
+			"password"  => $_POST['password'],
 			"email"     => $_POST['email'],
 			"age"       => $_POST['age'],
-			"location"  => $_POST['location']
+			"location"  => $_POST['location'],
 		);
 
 		$sql = sprintf(
@@ -51,6 +53,12 @@ if (isset($_POST['submit'])) {
 	<input type="text" name="firstname" id="firstname">
 	<label for="lastname">Last Name</label>
 	<input type="text" name="lastname" id="lastname">
+
+	<label for="username">Username</label>
+	<input type="text" name="username" id="username">
+	<label for="password">Password</label>
+	<input type="text" name="password" id="password">
+
 	<label for="email">Email Address</label>
 	<input type="text" name="email" id="email">
 	<label for="age">Age</label>
@@ -63,3 +71,31 @@ if (isset($_POST['submit'])) {
 <a href="index.php">Back to home</a>
 
 <?php include "templates/footer.php"; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
