@@ -1,6 +1,6 @@
-CREATE DATABASE test;
+CREATE DATABASE tania_crud_app;
 
-use test;
+use tania_crud_app;
 
 CREATE TABLE users (
 	id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 

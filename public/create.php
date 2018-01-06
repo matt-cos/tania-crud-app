@@ -2,6 +2,7 @@
 
 if (isset($_POST['submit'])) {
 	require "../config.php";
+	require "../common.php";
 
 	try {
 		$connection = new PDO($dsn, $username, $password, $options);
@@ -37,6 +38,13 @@ if (isset($_POST['submit'])) {
 ?>
 
 <?php include "templates/header.php"; ?>
+
+
+<?php if (isset($_POST['submit']) && $statement) { ?>
+	<blockquote><?php echo $_POST['firstname']; ?> successfully added.</blockquote>
+<?php } ?>
+
+<h2>Add a user</h2>
 
 <form method="post">
 	<label for="firstname">First Name</label>
