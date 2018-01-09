@@ -61,6 +61,9 @@ catch(PDOException $error) {
 	</form>
 <?php } ?>
 
+<br>
+<a href="signup.php">Don't have an account? Sign up here</a>
+<br>
 <a href="index.php">Back to home</a>
 
 <?php include "templates/footer.php"; ?>

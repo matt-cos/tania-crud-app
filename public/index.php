@@ -11,13 +11,14 @@ session_start();
 	<ul>
 		<li><a href="read.php"><strong>Read</strong></a> - checkout your friends' runs.</li>
 		<li><a href="#"><strong>Create</strong></a> - add a run.</li>
+		<li><a href="settings.php"><strong>Settings</strong></a> - edit your settings.</li>
 		<li><a href="logout.php"><strong>Logout</strong></a></li>
 	</ul>
 <?php } else { ?>
 	<ul>
-		<li><a href="signup.php"><strong>Sign Up</strong></a> - join your friends on this run tracking platform. This shouldn't show up if you are already logged in.</li>
+		<li><a href="signup.php"><strong>Sign Up</strong></a> - join your friends on this run tracking platform.</li>
 		<li><a href="read.php"><strong>Read</strong></a> - checkout your friends' runs</li>
-		<li><a href="login.php"><strong>Log in</strong></a> - to use the app. This shouldn't show up if you are already logged in.</li>
+		<li><a href="login.php"><strong>Log in</strong></a> - to use the app.</li>
 	</ul>
 <?php } ?>
 <!-- https://www.taniarascia.com/create-a-simple-database-app-connecting-to-mysql-with-php/ -->
