@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 if (isset($_POST['submit'])) {
 	require "../config.php";
 	require "../common.php";
@@ -44,6 +46,10 @@ if (isset($_POST['submit'])) {
 
 <?php if (isset($_POST['submit']) && $statement) { ?>
 	<blockquote><?php echo $_POST['firstname']; ?> successfully added.</blockquote>
+<?php } ?>
+
+<?php if ($_SESSION['username']) { ?>
+	<blockquote><?php echo $_SESSION['username']; ?> is logged in.</blockquote>
 <?php } ?>
 
 <h2>Add a user</h2>

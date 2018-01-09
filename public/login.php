@@ -1,64 +1,66 @@
-<?php
-   include("../config.php");
-	// require "../config.php";
-	session_start();
-   
-	if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form 
-      
-		$myusername = mysqli_real_escape_string($dsn, $_POST['username']);
-		$mypassword = mysqli_real_escape_string($dsn, $_POST['password']); 
-      
-		$sql = "SELECT id FROM users WHERE username = '$myusername' and password = '$mypassword'";
-		$result = mysqli_query($dsn, $sql);
-		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-		$active = $row['active'];
-      
-		$count = mysqli_num_rows($result);
+<?php 
+session_start();
+require "../config.php";
+require "../common.php";
+try {
+	$connection = new PDO($dsn, $username, $password, $options);
 
-		echo "TEST";
-      
-      // If result matched $myusername and $mypassword, table row must be 1 row
-		
-      if($count == 1) {
-         session_register("myusername");
-         $_SESSION['login_user'] = $myusername;
-         
-         header("location: welcome.php");
-      } else {
-         $error = "Your Login Name or Password is invalid";
-      }
-   }
+	// when form is submitted, if both fields are filled out:
+	if (isset($_POST['username']) && isset($_POST['password'])) {
+
+		// assign client input values as variables
+		$clientUsername = $_POST['username'];
+		$clientPassword = $_POST['password'];
+
+		// check variables against the database
+		$sql = "SELECT * FROM users WHERE username = '$clientUsername' AND password = '$clientPassword'";
+
+		// prepare and execute the sql statement
+		$statement = $connection->prepare($sql);
+		$statement->execute();
+
+		// see if this entry exists
+		$row_count = $statement->fetchColumn();
+		if ($row_count == 1) {
+			$_SESSION['username'] = $clientUsername;
+		} else {
+			$errormsg = "invalid credentials";
+			echo $errormsg;
+		}
+
+
+		if (isset($_SESSION['username'])) {
+			$username = $_SESSION['username'];
+			echo "hi " . $username;
+		}
+	}
+}
+
+catch(PDOException $error) {
+	echo $sql . "<br>" . $error->getMessage();
+}
 ?>
-<html>
-  
-  <!-- https://www.tutorialspoint.com/php/php_mysql_login.htm  -->
-   <head>
-      <title>Login Page</title>   
-   </head>
-   
-   <body>
-      <div>
-         <div>
-            <div><b>Login</b></div>
-				
-            <div>
-               
-               <form action="" method="post">
-                  <label>UserName  :</label>
-                  <input type="text" name="username" class="box"/>
-                  <label>Password  :</label>
-                  <input type="password" name = "password" class="box" />
-                  <input type="submit"value="Submit"/>
-               </form>
-               
-               <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
-					
-            </div>
-				
-         </div>
-			
-      </div>
+<?php include "templates/header.php"; ?>
 
-   </body>
-</html>
+<h3>LOGIN</h3>
+
+<?php if ($_SESSION['username']) { ?>
+	<p>Looks like you're already logged in <?php echo $_SESSION['username']; ?>! What would you like to do?</p>
+	<ul>
+		<li><a href="read.php"><strong>Read</strong></a> - checkout your friends' runs.</li>
+		<li><a href="#"><strong>Create</strong></a> - add a run.</li>
+		<li><a href="logout.php"><strong>Logout</strong></a></li>
+	</ul>
+<?php } else { ?>
+	<form method="post">
+		<label for="username">Username</label>
+		<input type="text" name="username" id="username">
+		<label for="password">Password</label>
+		<input type="text" name="password" id="password">
+		<input type="submit" name="submit" value="Submit">
+	</form>
+<?php } ?>
+
+<a href="index.php">Back to home</a>
+
+<?php include "templates/footer.php"; ?>
