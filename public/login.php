@@ -64,3 +64,5 @@ catch(PDOException $error) {
 <a href="index.php">Back to home</a>
 
 <?php include "templates/footer.php"; ?>
+
+<!-- http://codingcyber.org/simple-login-script-php-and-mysql-64/ -->
