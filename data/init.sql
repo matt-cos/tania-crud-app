@@ -13,3 +13,10 @@ CREATE TABLE users (
 	location VARCHAR(50),
 	date TIMESTAMP
 );
+
+CREATE TABLE runs (
+	username VARCHAR(30) NOT NULL,
+	distance INT(11) NOT NULL,
+	run_time TIME NOT NULL,
+	run_date TIMESTAMP
+);

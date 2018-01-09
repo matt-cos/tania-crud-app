@@ -23,15 +23,10 @@ try {
 		$row_count = $statement->fetchColumn();
 		if ($row_count == 1) {
 			$_SESSION['username'] = $clientUsername;
+			header('Location: index.php');
 		} else {
 			$errormsg = "invalid credentials";
 			echo $errormsg;
-		}
-
-
-		if (isset($_SESSION['username'])) {
-			$username = $_SESSION['username'];
-			echo "hi " . $username;
 		}
 	}
 }
@@ -44,14 +39,6 @@ catch(PDOException $error) {
 
 <h3>LOGIN</h3>
 
-<?php if ($_SESSION['username']) { ?>
-	<p>Looks like you're already logged in <?php echo $_SESSION['username']; ?>! What would you like to do?</p>
-	<ul>
-		<li><a href="read.php"><strong>Read</strong></a> - checkout your friends' runs.</li>
-		<li><a href="#"><strong>Create</strong></a> - add a run.</li>
-		<li><a href="logout.php"><strong>Logout</strong></a></li>
-	</ul>
-<?php } else { ?>
 	<form method="post">
 		<label for="username">Username</label>
 		<input type="text" name="username" id="username">
@@ -59,7 +46,6 @@ catch(PDOException $error) {
 		<input type="text" name="password" id="password">
 		<input type="submit" name="submit" value="Submit">
 	</form>
-<?php } ?>
 
 <br>
 <a href="signup.php">Don't have an account? Sign up here</a>

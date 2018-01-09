@@ -32,10 +32,9 @@ if (isset($_POST['submit'])) {
 <?php include "templates/header.php"; ?>
 
 <?php  
-if (isset($_POST['submit'])) 
-{
-	if ($result && $statement->rowCount() > 0) 
-	{ ?>
+if (isset($_POST['submit'])) {
+	if ($result && $statement->rowCount() > 0) { 
+?>
 		<h2>Results</h2>
 
 		<table>
@@ -51,9 +50,9 @@ if (isset($_POST['submit']))
 				</tr>
 			</thead>
 			<tbody>
-	<?php 
-		foreach ($result as $row) 
-		{ ?>
+		<?php 
+		foreach ($result as $row) { 
+		?>
 			<tr>
 				<td><?php echo escape($row["id"]); ?></td>
 				<td><?php echo escape($row["firstname"]); ?></td>
@@ -64,19 +63,22 @@ if (isset($_POST['submit']))
 				<td><?php echo escape($row["date"]); ?> </td>
 			</tr>
 		<?php 
-		} ?>
+		} 
+		?>
 		</tbody>
 	</table>
+	
 	<?php 
-	} 
-	else 
-	{ ?>
+	} else { 
+	?>
+	
 		<blockquote>No results found for <?php echo escape($_POST['location']); ?>.</blockquote>
-	<?php
+<?php
 	} 
-}?> 
+}
+?> 
 
-<h2>Find user based on location</h2>
+<h2>Find user based on location (this should be "by username")</h2>
 
 <form method="post">
 	<label for="location">Location</label>
