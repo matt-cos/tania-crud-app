@@ -22,5 +22,6 @@ session_start();
 	</ul>
 <?php } ?>
 <!-- https://www.taniarascia.com/create-a-simple-database-app-connecting-to-mysql-with-php/ -->
+<!-- https://joshtronic.com/2015/05/24/basic-page-routing-in-php/ -->
 
 <?php include "templates/footer.php" ?>
