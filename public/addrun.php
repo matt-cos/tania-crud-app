@@ -64,6 +64,9 @@ if (isset($_POST['submit'])) {
 
 	<label for="run_time">Total Time</label>
 	<input type="text" name="run_time" id="run_time" placeholder="XX:XX:XX" pattern="(0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}">
+	
+	<!-- the below link will help with converting times -->
+	<!-- http://www.hashbangcode.com/blog/converting-and-decimal-time-php -->
 
 	<input type="submit" name="submit" value="Submit">
 </form>
