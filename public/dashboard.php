@@ -60,6 +60,9 @@ catch(PDOException $error) {
 
 <?php endif; ?>
 
+<!-- can use wunderground API for historical weather -->
+<!-- https://www.wunderground.com/weather/api/d/docs?d=data/history -->
+
 <a href="index.php">Back to home</a>
 
 <?php include "templates/footer.php"; ?>
