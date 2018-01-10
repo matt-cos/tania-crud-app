@@ -1,21 +1,18 @@
 <?php 
 session_start();
 
-
 require "../config.php";
 require "../common.php";
 
 try {
 	$connection = new PDO($dsn, $username, $password, $options);
 
-	$sql = "SELECT * 
-			FROM runs
-			WHERE username = 'userName'";
+	$username = $_SESSION['username'];
 
-	$usernameeee = 'userName';
+	$sql = "SELECT * FROM runs WHERE username = '$username'";
 
 	$statement = $connection->prepare($sql);
-	$statement->bindParam(':username', $usernameeee, PDO::PARAM_STR);
+	$statement->bindParam(':username', $username, PDO::PARAM_STR);
 	$statement->execute();
 
 	$result = $statement->fetchAll();
@@ -59,7 +56,7 @@ catch(PDOException $error) {
 	
 <?php else: ?>
 
-	<blockquote>No results found for <?php echo escape($_POST['location']); ?>.</blockquote>
+	<blockquote>No results found for <?php echo $username ?>. Add a run <a href="addrun.php">here</a>.</blockquote>
 
 <?php endif; ?>
 

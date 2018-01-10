@@ -6,7 +6,7 @@ session_start();
 
 <h3>HOMEPAGE</h3>
 
-<?php if ($_SESSION['username']) { ?>
+<?php if (isset($_SESSION['username'])) { ?>
 	<p>Welcome back <?php echo $_SESSION['username']; ?>! What would you like to do?</p>
 	<ul>
 		<li><a href="read.php"><strong>Read</strong></a> - checkout your friends' runs.</li>
