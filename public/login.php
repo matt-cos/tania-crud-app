@@ -1,39 +1,74 @@
 <?php 
+
 session_start();
+
 require "../config.php";
 require "../common.php";
-try {
-	$connection = new PDO($dsn, $username, $password, $options);
 
-	// when form is submitted, if both fields are filled out:
-	if (isset($_POST['username']) && isset($_POST['password'])) {
+// when form is submitted, if both fields are filled out:
+if (isset($_POST['username']) && isset($_POST['password'])) {
+
+	try {
+		$connection = new PDO($dsn, $username, $password, $options);
 
 		// assign client input values as variables
-		$clientUsername = $_POST['username'];
-		$clientPassword = $_POST['password'];
+		// $clientUsername = $_POST['username'];
+		// $clientPassword = $_POST['password'];
 
 		// check variables against the database
-		$sql = "SELECT * FROM users WHERE username = '$clientUsername' AND password = '$clientPassword'";
+		$sql = "SELECT password FROM users WHERE username = :username";
+		// $sql = "SELECT * FROM users WHERE username = '$clientUsername' AND password = '$clientPassword'";
 
 		// prepare and execute the sql statement
 		$statement = $connection->prepare($sql);
+		$statement->bindParam(':username', $_POST['username']);
 		$statement->execute();
 
 		// see if this entry exists
-		$row_count = $statement->fetchColumn();
-		if ($row_count == 1) {
-			$_SESSION['username'] = $clientUsername;
-			header('Location: index.php');
+		// $result = $statement->fetchColumn();
+		$result = $statement->fetch(\PDO::FETCH_OBJ);
+		if ($result == 1) {
+			// check to see if the passwords match
+			// normally we would check to see if the hashes matched
+			$userInputPasswordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+			$databasePasswordHash = password_hash($result->password, PASSWORD_DEFAULT);
+			
+			// echo "user input password: " . $_POST['password'];
+			// echo "<br>";	
+			// echo "user input password, hashed: " . $userInputPasswordHash;
+			// echo "<br>";
+			// echo "password in database for this user: " . $result->password; // this is the stored password
+			// echo "<br>";
+			// echo "password in database for this user, hashed: " . $databasePasswordHash; // this is the stored password
+			// echo "<br>";
+
+			// takes plain text password from database and compares it to hashed password from user input. more of a proof of concept really.
+			if (password_verify( $result->password, $userInputPasswordHash )) {
+
+				// successfully logged in
+				$_SESSION['username'] = $_POST['username'];
+				header('Location: index.php');
+
+			} else {
+
+				echo 'Invalid password.';
+
+			}
+
+			// if($result->password === $_POST['password']) {
+				
+			// }
 		} else {
 			$errormsg = "invalid credentials";
 			echo $errormsg;
 		}
 	}
+	catch(PDOException $error) {
+		// TODO: remove getMessage for production site
+		echo $sql . "<br>" . $error->getMessage();
+	}
 }
 
-catch(PDOException $error) {
-	echo $sql . "<br>" . $error->getMessage();
-}
 ?>
 <?php include "templates/header.php"; ?>
 
@@ -41,7 +76,7 @@ catch(PDOException $error) {
 
 	<form method="post">
 		<label for="username">Username</label>
-		<input type="text" name="username" id="username">
+		<input type="text" name="username" id="username" value="userName">
 		<label for="password">Password</label>
 		<input type="text" name="password" id="password">
 		<input type="submit" name="submit" value="Submit">

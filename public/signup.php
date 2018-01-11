@@ -34,6 +34,7 @@ if (isset($_POST['submit'])) {
 	}
 
 	catch(PDOException $error) {
+		// TODO: remove getMessage for production site
 		echo $sql . "<br>" . $error->getMessage();
 	}
 }
