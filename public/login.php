@@ -30,20 +30,38 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 		if ($result == 1) {
 			// check to see if the passwords match
 			// normally we would check to see if the hashes matched
-			$userInputPasswordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-			$databasePasswordHash = password_hash($result->password, PASSWORD_DEFAULT);
+			// $userInputPasswordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+			// $databasePasswordHash = password_hash($result->password, PASSWORD_DEFAULT);
+			$databasePasswordHash = $result->password;
+			// $databasePasswordHash = '$2y$10$tQmqB8tdeQgt3SiW.GpiTOw';
+			$gobble = $_POST['password'];
 			
-			// echo "user input password: " . $_POST['password'];
-			// echo "<br>";	
+			echo "user input username: " . $_POST['username'];
+			echo "<br>";
+
+			echo "user input password: " . $_POST['password'];
+			echo "<br>";	
 			// echo "user input password, hashed: " . $userInputPasswordHash;
 			// echo "<br>";
-			// echo "password in database for this user: " . $result->password; // this is the stored password
+			// echo "hardcoded password: " . $databasePasswordHash;
 			// echo "<br>";
+			echo "password in database for this user: " . $result->password; // this is the stored password
+			echo "<br>";
+
+			if (password_verify( $_POST['password'], $databasePasswordHash )) {
+				echo "they match";
+			} else {
+				echo "they DON'T match";
+			}
+
+			// http://php.net/manual/en/function.password-verify.php
+
+			echo "<br>";
 			// echo "password in database for this user, hashed: " . $databasePasswordHash; // this is the stored password
 			// echo "<br>";
 
 			// takes plain text password from database and compares it to hashed password from user input. more of a proof of concept really.
-			if (password_verify( $result->password, $userInputPasswordHash )) {
+			if (password_verify( $_POST['password'], $databasePasswordHash )) {
 
 				// successfully logged in
 				$_SESSION['username'] = $_POST['username'];
