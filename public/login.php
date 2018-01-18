@@ -40,7 +40,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 		} else {
 
-			echo "invalid credentials";
+			echo "Invalid credentials.";
 
 		}
 	}
@@ -60,7 +60,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 		<label for="username">Username</label>
 		<input type="text" name="username" id="username" value="userName">
 		<label for="password">Password</label>
-		<input type="text" name="password" id="password">
+		<input type="password" name="password" id="password">
 		<input type="submit" name="submit" value="Submit">
 	</form>
 

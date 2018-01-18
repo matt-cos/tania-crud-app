@@ -9,7 +9,8 @@ try {
 
 	$username = $_SESSION['username'];
 
-	$sql = "SELECT * FROM runs WHERE username = '$username'";
+	// $sql = "SELECT * FROM runs WHERE username = '$username'";
+	$sql = "SELECT * FROM runs WHERE username = :username";
 
 	$statement = $connection->prepare($sql);
 	$statement->bindParam(':username', $username, PDO::PARAM_STR);

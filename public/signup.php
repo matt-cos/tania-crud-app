@@ -14,13 +14,14 @@ if (isset($_POST['submit'])) {
 		$user_email = $_POST['email'];
 
 		if (filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
-			echo "Email address '" . $_POST['email'] . "' is considered valid.\n";
 
 			$new_user = array(
 				"firstname" => $_POST['firstname'],
 				"lastname"  => $_POST['lastname'],
 				"username"  => $_POST['username'],
 				// "password"  => $_POST['password'],
+
+				// https://gist.github.com/bmcculley/9339529 (password should contain...)
 				"password"  => $hashed_password,
 				// "email"     => $_POST['email'],
 				"email"     => $user_email,
@@ -37,6 +38,9 @@ if (isset($_POST['submit'])) {
 
 			$statement = $connection->prepare($sql);
 			$statement->execute($new_user);
+
+			$_SESSION['username'] = $_POST['username'];
+			header('Location: index.php');
 
 		} else {
 			echo "Email address '" . $_POST['email'] . "' is considered invalid.\n";
@@ -56,10 +60,6 @@ if (isset($_POST['submit'])) {
 <?php include "templates/header.php"; ?>
 
 
-<?php if (isset($_POST['submit']) && $statement) { ?>
-	<blockquote><?php echo $_POST['firstname']; ?> successfully added.</blockquote>
-<?php } ?>
-
 <?php if ($_SESSION['username']) { ?>
 	<blockquote><?php echo $_SESSION['username']; ?> is logged in.</blockquote>
 <?php } ?>
@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
 	<label for="username">Username</label>
 	<input type="text" name="username" id="username">
 	<label for="password">Password</label>
-	<input type="text" name="password" id="password">
+	<input type="password" name="password" id="password">
 
 	<label for="email">Email Address</label>
 	<input type="text" name="email" id="email">
