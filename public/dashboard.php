@@ -57,7 +57,7 @@ catch(PDOException $error) {
 				<td><?php echo escape($row["run_date"]); ?></td>
 				<td><?php echo $miles; ?></td>
 				<td><?php echo escape($row["run_time"]); ?></td>
-				<td><?php echo $seconds_per_mile; ?> seconds per mile LOL</td>
+				<td><?php echo ceil($seconds_per_mile); ?> seconds per mile LOL</td>
 
 
 			</tr>
