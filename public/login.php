@@ -40,8 +40,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 		} else {
 
-			$errormsg = "invalid credentials";
-			echo $errormsg;
+			echo "invalid credentials";
 
 		}
 	}

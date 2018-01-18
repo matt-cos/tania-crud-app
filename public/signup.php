@@ -10,30 +10,38 @@ if (isset($_POST['submit'])) {
 		$connection = new PDO($dsn, $username, $password, $options);
 
 		$hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+		$user_email = $_POST['email'];
+
+		if (filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
+			echo "Email address '" . $_POST['email'] . "' is considered valid.\n";
+
+			$new_user = array(
+				"firstname" => $_POST['firstname'],
+				"lastname"  => $_POST['lastname'],
+				"username"  => $_POST['username'],
+				// "password"  => $_POST['password'],
+				"password"  => $hashed_password,
+				// "email"     => $_POST['email'],
+				"email"     => $user_email,
+				"age"       => $_POST['age'],
+				"location"  => $_POST['location'],
+			);
+
+			$sql = sprintf(
+					"INSERT INTO %s (%s) values (%s)",
+					"users",
+					implode(", ", array_keys($new_user)),
+					":" . implode(", :", array_keys($new_user))
+			);
+
+			$statement = $connection->prepare($sql);
+			$statement->execute($new_user);
+
+		} else {
+			echo "Email address '" . $_POST['email'] . "' is considered invalid.\n";
+		}
 		
-		$new_user = array(
-			"firstname" => $_POST['firstname'],
-			"lastname"  => $_POST['lastname'],
-			"username"  => $_POST['username'],
-			// "password"  => $_POST['password'],
-			"password"  => $hashed_password,
-			"email"     => $_POST['email'],
-			"age"       => $_POST['age'],
-			"location"  => $_POST['location'],
-		);
-
-		$sql = sprintf(
-				"INSERT INTO %s (%s) values (%s)",
-				"users",
-				implode(", ", array_keys($new_user)),
-				":" . implode(", :", array_keys($new_user))
-		);
-
-		// the code above works the same as the below
-		// $sql = "INSERT INTO users (firstname, lastname, email, age, location) values (:firstname, :lastname, :email, :age, :location)";
-
-		$statement = $connection->prepare($sql);
-		$statement->execute($new_user);
 	}
 
 	catch(PDOException $error) {
