@@ -7,8 +7,9 @@ function escape($html) {
 
 // converts HH:MM:SS to seconds
 function time_to_seconds($time) {
-    $timeArr = explode(':', $time);
-    $seconds = ($timeArr[0] * 3600) + ($timeArr[1] * 60) + ($timeArr[2]);
- 
-    return $seconds;
+	$timeArr = explode(':', $time);
+	$seconds = ($timeArr[0] * 3600) + ($timeArr[1] * 60) + ($timeArr[2]);
+
+	return $seconds;
+	// http://www.hashbangcode.com/blog/converting-and-decimal-time-php
 }
