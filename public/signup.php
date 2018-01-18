@@ -2,9 +2,10 @@
 
 session_start();
 
+require "../config.php";
+require "../common.php";
+
 if (isset($_POST['submit'])) {
-	require "../config.php";
-	require "../common.php";
 
 	try {
 		$connection = new PDO($dsn, $username, $password, $options);
