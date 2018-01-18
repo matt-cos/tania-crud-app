@@ -8,12 +8,15 @@ if (isset($_POST['submit'])) {
 
 	try {
 		$connection = new PDO($dsn, $username, $password, $options);
+
+		$hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 		
 		$new_user = array(
 			"firstname" => $_POST['firstname'],
 			"lastname"  => $_POST['lastname'],
 			"username"  => $_POST['username'],
-			"password"  => $_POST['password'],
+			// "password"  => $_POST['password'],
+			"password"  => $hashed_password,
 			"email"     => $_POST['email'],
 			"age"       => $_POST['age'],
 			"location"  => $_POST['location'],
@@ -34,6 +37,7 @@ if (isset($_POST['submit'])) {
 	}
 
 	catch(PDOException $error) {
+		// TODO: remove getMessage for production site
 		echo $sql . "<br>" . $error->getMessage();
 	}
 }
