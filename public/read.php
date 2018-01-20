@@ -8,14 +8,12 @@ if (isset($_POST['submit'])) {
 	try {
 		$connection = new PDO($dsn, $username, $password, $options);
 
-		$sql = "SELECT * 
-				FROM users
-				WHERE location = :location";
+		$sql = "SELECT * FROM runs WHERE username = :username";
 
-		$location = $_POST['location'];
+		$username = $_POST['username'];
 
 		$statement = $connection->prepare($sql);
-		$statement->bindParam(':location', $location, PDO::PARAM_STR);
+		$statement->bindParam(':username', $username, PDO::PARAM_STR);
 		$statement->execute();
 
 		$result = $statement->fetchAll();
@@ -32,57 +30,56 @@ if (isset($_POST['submit'])) {
 <?php include "templates/header.php"; ?>
 
 <?php  
-if (isset($_POST['submit'])) {
-	if ($result && $statement->rowCount() > 0) { 
+if (isset($_POST['submit'])):
+	if ($result && $statement->rowCount() > 0):
 ?>
-		<h2>Results</h2>
+		<h2><?php echo $username ?>'s Runs</h2>
 
 		<table>
 			<thead>
 				<tr>
-					<th>#</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email Address</th>
-					<th>Age</th>
-					<th>Location</th>
 					<th>Date</th>
+					<th>Distance</th>
+					<th>Time</th>
+					<th>Pace</th>
 				</tr>
 			</thead>
 			<tbody>
-		<?php 
-		foreach ($result as $row) { 
+
+		<?php foreach ($result as $row):
+			$miles = escape($row["distance"]);
+			$run_time_in_seconds = time_to_seconds(escape($row["run_time"]));
+			$seconds_per_mile = $run_time_in_seconds / $miles;
 		?>
 			<tr>
-				<td><?php echo escape($row["id"]); ?></td>
-				<td><?php echo escape($row["firstname"]); ?></td>
-				<td><?php echo escape($row["lastname"]); ?></td>
-				<td><?php echo escape($row["email"]); ?></td>
-				<td><?php echo escape($row["age"]); ?></td>
-				<td><?php echo escape($row["location"]); ?></td>
-				<td><?php echo escape($row["date"]); ?> </td>
+				<td><?php echo escape($row["run_date"]); ?></td>
+				<td><?php echo $miles; ?> miles</td>
+				<td><?php echo escape($row["run_time"]); ?></td>
+				<td><?php echo seconds_to_time($seconds_per_mile); ?></td>
 			</tr>
-		<?php 
-		} 
-		?>
+
+		<?php endforeach; ?>
+
 		</tbody>
 	</table>
 	
 	<?php 
-	} else { 
+	else:
 	?>
 	
-		<blockquote>No results found for <?php echo escape($_POST['location']); ?>.</blockquote>
+		<blockquote>No results found for <?php echo $username ?>.</blockquote>
 <?php
-	} 
-}
+	endif; 
+endif;
 ?> 
 
-<h2>Find user based on location (this should be "by username")</h2>
+
+
+<h2>Find user</h2>
 
 <form method="post">
-	<label for="location">Location</label>
-	<input type="text" id="location" name="location">
+	<label for="username">Username:</label>
+	<input type="text" id="username" name="username">
 	<input type="submit" name="submit" value="View Results">
 </form>
 
