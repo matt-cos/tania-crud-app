@@ -20,11 +20,9 @@ if (isset($_POST['submit'])) {
 				"firstname" => $_POST['firstname'],
 				"lastname"  => $_POST['lastname'],
 				"username"  => $_POST['username'],
-				// "password"  => $_POST['password'],
 
 				// https://gist.github.com/bmcculley/9339529 (password should contain...)
 				"password"  => $hashed_password,
-				// "email"     => $_POST['email'],
 				"email"     => $user_email,
 				"age"       => $_POST['age'],
 				"location"  => $_POST['location'],
