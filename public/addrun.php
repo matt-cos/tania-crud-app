@@ -44,15 +44,9 @@ if (isset($_POST['submit'])) {
 	}
 }
 
-
 ?>
 
 <?php include "templates/header.php"; ?>
-
-<?php if (isset($_POST['submit']) && $statement) { ?>
-	<!-- success statement -->
-	<!-- <blockquote><?php // echo $_POST['distance']; ?> miles successfully added.</blockquote> -->
-<?php } ?>
 
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 	
@@ -64,7 +58,11 @@ if (isset($_POST['submit'])) {
 		<div class="mdl-grid demo-content">
 			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 				
-				<h2>Add a run.</h2>
+				<!-- <h2>Add a run.</h2> -->
+				<?php if (isset($_POST['submit']) && $statement) { ?>
+					<!-- success statement -->
+					<blockquote><?php echo $_POST['distance']; ?> miles successfully added.</blockquote>
+				<?php } ?>
 
 				<form method="post">
 					<label for="run_date">Date of Run</label>
