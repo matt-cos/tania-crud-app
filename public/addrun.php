@@ -7,11 +7,14 @@ if (!isset($_SESSION['username'])):
 endif;
 
 if (isset($_POST['submit'])) {
+
 	require "../config.php";
 	require "../common.php";
 
 	if (empty($_POST['run_date']) or empty($_POST['distance']) or empty($_POST['run_time'])) {
+
 		echo "ya left some blanks";
+		
 	} else {
 
 		try {
