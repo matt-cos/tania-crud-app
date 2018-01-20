@@ -5,6 +5,8 @@ session_start();
 require "../config.php";
 require "../common.php";
 
+$pageName = "Login";
+
 // when form is submitted, if both fields are filled out:
 if (isset($_POST['username']) && isset($_POST['password'])) {
 

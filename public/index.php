@@ -2,6 +2,8 @@
 
 session_start();
 
+$pageName = "Welcome!";
+
 ?>
 
 <?php include "templates/header.php" ?>
