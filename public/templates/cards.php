@@ -18,25 +18,19 @@
 				<li>
 					<label for="chkbox1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
 						<input type="checkbox" id="chkbox1" class="mdl-checkbox__input">
-						<span class="mdl-checkbox__label">Click per object</span>
+						<span class="mdl-checkbox__label">Miles</span>
 					</label>
 				</li>
 				<li>
 					<label for="chkbox2" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
 						<input type="checkbox" id="chkbox2" class="mdl-checkbox__input">
-						<span class="mdl-checkbox__label">Views per object</span>
+						<span class="mdl-checkbox__label">Time</span>
 					</label>
 				</li>
 				<li>
 					<label for="chkbox3" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
 						<input type="checkbox" id="chkbox3" class="mdl-checkbox__input">
-						<span class="mdl-checkbox__label">Objects selected</span>
-					</label>
-				</li>
-				<li>
-					<label for="chkbox4" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-						<input type="checkbox" id="chkbox4" class="mdl-checkbox__input">
-						<span class="mdl-checkbox__label">Objects viewed</span>
+						<span class="mdl-checkbox__label">Pace</span>
 					</label>
 				</li>
 			</ul>
