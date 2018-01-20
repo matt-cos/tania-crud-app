@@ -2,6 +2,8 @@
 
 session_start();
 
+$pageName = "Welcome!";
+
 ?>
 
 <?php include "templates/header.php" ?>
@@ -11,10 +13,11 @@ session_start();
 <?php if (isset($_SESSION['username'])) { ?>
 	<p>Welcome, <?php echo $_SESSION['username']; ?>! What would you like to do?</p>
 	<ul>
-		<li><a href="read.php"><strong>Read</strong></a> - checkout your friends' runs.</li>
+		<!-- <li><a href="read.php"><strong>Read</strong></a> - checkout your friends' runs.</li>
 		<li><a href="addrun.php"><strong>Create</strong></a> - add a run.</li>
 		<li><a href="dashboard.php"><strong>Read</strong></a> - check out your run history.</li>
-		<li><a href="settings.php"><strong>Settings</strong></a> - edit your settings.</li>
+		<li><a href="settings.php"><strong>Settings</strong></a> - edit your settings.</li> -->
+		<li><a href="dashboard.php"><strong>Dashboard</strong></a></li>
 		<li><a href="logout.php"><strong>Logout</strong></a></li>
 	</ul>
 <?php } else { ?>
