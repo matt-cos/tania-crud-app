@@ -18,5 +18,6 @@ CREATE TABLE runs (
 	username VARCHAR(30) NOT NULL,
 	distance FLOAT NOT NULL,
 	run_time TIME NOT NULL,
+	pace TIME NOT NULL,
 	run_date DATE
 );

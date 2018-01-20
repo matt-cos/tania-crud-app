@@ -64,16 +64,13 @@ if (isset($_POST['submit'])) {
 							</thead>
 							<tbody>
 
-						<?php foreach ($result as $row):
-							$miles = escape($row["distance"]);
-							$run_time_in_seconds = time_to_seconds(escape($row["run_time"]));
-							$seconds_per_mile = $run_time_in_seconds / $miles;
-						?>
+						<?php foreach ($result as $row): ?>
+
 							<tr>
-								<td><?php echo escape($row["run_date"]); ?></td>
-								<td><?php echo $miles; ?> miles</td>
-								<td><?php echo escape($row["run_time"]); ?></td>
-								<td><?php echo seconds_to_time($seconds_per_mile); ?></td>
+								<td><?php echo escape($row['run_date']); ?></td>
+								<td><?php echo escape($row['distance']); ?> miles</td>
+								<td><?php echo escape($row['run_time']); ?></td>
+								<td><?php echo escape($row['pace']); ?></td>
 							</tr>
 
 						<?php endforeach; ?>

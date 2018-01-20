@@ -21,12 +21,18 @@ if (isset($_POST['submit'])) {
 
 		try {
 			$connection = new PDO($dsn, $username, $password, $options);
+
+			$miles = escape($_POST['distance']);
+			$run_time_in_seconds = time_to_seconds(escape($_POST['run_time']));
+			$seconds_per_mile = $run_time_in_seconds / $miles;
+			$pace = seconds_to_time($seconds_per_mile);
 			
 			$new_run = array(
 				"username" => $_SESSION['username'],
-				"run_date" => $_POST['run_date'],
 				"distance" => $_POST['distance'],
 				"run_time" => $_POST['run_time'],
+				"pace"	   => $pace,
+				"run_date" => $_POST['run_date'],
 			);
 
 			$sql = sprintf(
