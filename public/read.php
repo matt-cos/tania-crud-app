@@ -6,6 +6,8 @@ if (!isset($_SESSION['username'])):
 	header('Location: login.php');
 endif;
 
+$pageName = "My Friends' Runs";
+
 if (isset($_POST['submit'])) {
 
 	require "../config.php";
@@ -49,7 +51,7 @@ if (isset($_POST['submit'])) {
 				if (isset($_POST['submit'])):
 					if ($result && $statement->rowCount() > 0):
 				?>
-						<h2><?php echo $username ?>'s Runs</h2>
+						<p><?php echo $username ?>'s Runs</p>
 
 						<table>
 							<thead>
@@ -89,10 +91,8 @@ if (isset($_POST['submit'])) {
 				endif;
 				?> 
 
-				<h2>Find user</h2>
-
 				<form method="post">
-					<label for="username">Username:</label>
+					<label for="username">Search by username:</label>
 					<input type="text" id="username" name="username">
 					<input type="submit" name="submit" value="View Results">
 				</form>

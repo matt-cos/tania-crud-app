@@ -6,6 +6,8 @@ if (!isset($_SESSION['username'])):
 	header('Location: login.php');
 endif;
 
+$pageName = "Add a Run";
+
 if (isset($_POST['submit'])) {
 
 	require "../config.php";

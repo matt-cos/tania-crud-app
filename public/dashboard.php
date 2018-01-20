@@ -6,6 +6,8 @@ if (!isset($_SESSION['username'])):
 	header('Location: login.php');
 endif;
 
+$pageName = "My Dashboard";
+
 require "../config.php";
 require "../common.php";
 

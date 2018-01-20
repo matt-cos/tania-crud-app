@@ -6,6 +6,8 @@ if (!isset($_SESSION['username'])):
 	header('Location: login.php');
 endif;
 
+$pageName = "Settings";
+
 require "../config.php";
 require "../common.php";
 
@@ -22,8 +24,6 @@ require "../common.php";
 	<main class="mdl-layout__content mdl-color--grey-100">
 		<div class="mdl-grid demo-content">
 			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-				
-				<h3>SETTINGS</h3>
 
 				<ul>
 					<li><a href="#"><strong>Update</strong></a> - edit your account.</li>
