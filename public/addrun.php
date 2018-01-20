@@ -50,29 +50,45 @@ if (isset($_POST['submit'])) {
 <?php include "templates/header.php"; ?>
 
 <?php if (isset($_POST['submit']) && $statement) { ?>
-	<blockquote><?php echo $_POST['distance']; ?> miles successfully added.</blockquote>
+	<!-- success statement -->
+	<!-- <blockquote><?php // echo $_POST['distance']; ?> miles successfully added.</blockquote> -->
 <?php } ?>
 
-<h2>Add a run.</h2>
-
-<form method="post">
-	<label for="run_date">Date of Run</label>
-	<input type="date" name="run_date" id="run_date">
-
-	<label for="distance">Distance (mi)</label>
-	<input type="text" name="distance" id="distance">
-
-	<label for="run_time">Total Time</label>
-	<input type="text" name="run_time" id="run_time" placeholder="XX:XX:XX" pattern="(0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}">
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 	
-	<!-- the below link will help with converting times -->
-	<!-- http://www.hashbangcode.com/blog/converting-and-decimal-time-php -->
+	<?php include "templates/layout-header.php"; ?>
+	
+	<?php include "templates/sidebar.php"; ?>
 
-	<input type="submit" name="submit" value="Submit">
-</form>
+	<main class="mdl-layout__content mdl-color--grey-100">
+		<div class="mdl-grid demo-content">
+			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+				
+				<h2>Add a run.</h2>
 
-<a href="dashboard.php">View my runs</a>
-<br>
-<a href="index.php">Back to home</a>
+				<form method="post">
+					<label for="run_date">Date of Run</label>
+					<input type="date" name="run_date" id="run_date">
+
+					<label for="distance">Distance (mi)</label>
+					<input type="text" name="distance" id="distance">
+
+					<label for="run_time">Total Time</label>
+					<input type="text" name="run_time" id="run_time" placeholder="XX:XX:XX" pattern="(0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9]){2}">
+					
+					<input type="submit" name="submit" value="Submit">
+				</form>
+
+			</div>
+
+			<?php include "templates/demo-content.php"; ?>
+			
+			<?php include "templates/cards.php"; ?>
+
+		</div>
+	</main>
+</div>
+
+<?php include "templates/svg.php"; ?>
 
 <?php include "templates/footer.php"; ?>
