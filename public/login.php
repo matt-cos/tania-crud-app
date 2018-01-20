@@ -30,7 +30,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 			if (password_verify( $userInputPassword, $databasePasswordHash )) {
 				// successfully logged in
 				$_SESSION['username'] = $_POST['username'];
-				header('Location: index.php');
+				header('Location: dashboard.php');
 
 			} else {
 
