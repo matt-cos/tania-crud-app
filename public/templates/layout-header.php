@@ -19,6 +19,7 @@
 			<li class="mdl-menu__item">Contact</li>
 			<li class="mdl-menu__item">Legal information</li>
 			<li class="mdl-menu__item"><a href="settings.php">Settings</a></li>
+			<li class="mdl-menu__item"><a href="logout.php">Log Out</a></li>
 		</ul>
 	</div>
 </header>

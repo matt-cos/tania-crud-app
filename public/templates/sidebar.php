@@ -20,7 +20,6 @@
 		<a class="mdl-navigation__link" href="dashboard.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
 		<a class="mdl-navigation__link" href="addrun.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Add a Run</a>
 		<a class="mdl-navigation__link" href="read.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>My Friends' Runs</a>
-		<a class="mdl-navigation__link" href="logout.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Log Out</a>
 		<div class="mdl-layout-spacer"></div>
 		<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
 	</nav>
