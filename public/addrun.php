@@ -28,11 +28,13 @@ if (isset($_POST['submit'])) {
 			$pace = seconds_to_time($seconds_per_mile);
 			
 			$new_run = array(
-				"username" => $_SESSION['username'],
-				"distance" => $_POST['distance'],
-				"run_time" => $_POST['run_time'],
-				"pace"	   => $pace,
-				"run_date" => $_POST['run_date'],
+				"username"			  => $_SESSION['username'],
+				"distance"			  => $_POST['distance'],
+				"run_time"			  => $_POST['run_time'],
+				"run_time_in_seconds" => $run_time_in_seconds,
+				"pace"				  => $pace,
+				"pace_in_seconds"	  => $seconds_per_mile,
+				"run_date"			  => $_POST['run_date'],
 			);
 
 			$sql = sprintf(

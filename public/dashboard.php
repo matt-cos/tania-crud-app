@@ -112,6 +112,10 @@ catch(PDOException $error) {
 
 	// console.log(data);
 	console.log(phpData);
+	// phpData[0].run_time = 60;
+	// console.log(phpData[0].run_time);
+
+	// need to convert times into minutes and then use minutes to plot the graph
 
 
 	var vis = d3.select("#visualisation"),
@@ -125,7 +129,7 @@ catch(PDOException $error) {
 	},
 
 	xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0,10]),
-	yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,10]),
+	yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,18000]),
 
 	xAxis = d3.svg.axis()
 		.scale(xScale),
@@ -147,9 +151,10 @@ catch(PDOException $error) {
 	var lineGen = d3.svg.line()
 		.x(function(d) {
 			return xScale(d.distance);
+			// currently comparing distance to time, which is more suited for a bargraph. need to figure out how to make the X axis uses dates
 		})
 		.y(function(d) {
-			return yScale(d.distance);
+			return yScale(d.run_time_in_seconds);
 		})
 		.interpolate("basis");
 
