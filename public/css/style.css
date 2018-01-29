@@ -13,3 +13,14 @@ th {
 	padding: 5px;
 	border-bottom: 1px solid #aaa;
 }
+
+/* BEGIN D3 */
+.axis path {
+	fill: none;
+	stroke: #777;
+	shape-rendering: crispEdges;
+}
+.axis text {
+	/*font-size: 13px;*/
+}
+/* END D3 */
